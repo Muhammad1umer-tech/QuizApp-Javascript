@@ -25,7 +25,12 @@ body {
 .quiz-header {
   padding: 2rem;
 }
-
+.ans-pro-correct{
+  background-color: green;
+}
+.ans-pro-false{
+  background-color: red;
+}
 ul {
   list-style-type:none;
   padding:0;

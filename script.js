@@ -19,13 +19,17 @@ let quizdata = [
 
 
 let Question_Tag = document.getElementById('Question-Tag');
-let a = document.getElementById('a');
-let b = document.getElementById('b');
-let c = document.getElementById('c');
-let d = document.getElementById('d');
+let a = document.getElementById('aa');
+let b = document.getElementById('bb');
+let c = document.getElementById('cc');
+let d = document.getElementById('dd');
 const tbtn = document.getElementById('butt')
-
+const box = document.getElementById('ans-pro')
+const answers = document.querySelectorAll('.ans');
 let aa = 0;
+function getSelected() {
+   
+}
 loadedQuiz();
 function loadedQuiz() {
   Question_Tag.innerHTML = quizdata[aa]['question'];
@@ -33,13 +37,31 @@ function loadedQuiz() {
   b.innerHTML = quizdata[aa]['b'];
   c.innerHTML = quizdata[aa]['c'];
   d.innerHTML = quizdata[aa]['d'];
+  getSelected();
 }
 
 
 
 tbtn.addEventListener("click", () => {
-  aa++
-
-  
-  loadedQuiz();
+  let i=0;
+  answers.forEach((ans)=> {
+     if(ans.checked===true){
+       console.log(ans.id, quizdata[aa]['corrent'])
+       if(ans.id==quizdata[aa]['corrent']){
+         box.classList.remove('ans-pro-false')
+         box.classList.add('ans-pro-correct')
+       }
+       else {
+         box.classList.remove('ans-pro-correct')
+         box.classList.add('ans-pro-false')
+       }
+       aa++
+       aa=aa%quizdata.length;
+       loadedQuiz();
+       answers.forEach((ans)=> {
+       ans.checked = false;
+       })
+     }
+    i++
+  })
 })
